@@ -314,7 +314,6 @@ public class Bases extends javax.swing.JInternalFrame {
         jTextField4.setText(lista.size()+"");
         jTextField5.setText((3-lista.size())+"");
         //mostrar en fila(A)
-        
         if(lista.size()>0)
         {
             String aux="";
@@ -345,6 +344,29 @@ public class Bases extends javax.swing.JInternalFrame {
         {
             jTextField1.setText("");
         }
+        //Mostrar en Null(A)
+        for(int i=0;i<3;i++) //aquí veo si la columna
+        {
+            if(this.NoPivote(i))
+            {
+                for(int j=0;j<3;j++) //para las filas
+                {
+                    jTable3.setValueAt((mNull[j][i]*-1), j, i);
+                }
+            }
+        }
+    }
+    
+    private boolean NoPivote(int columna)
+    {
+        for(int i=0;i<lista.size();i++)
+        {
+            if(columna==lista.get(i).getColumna())
+            {
+                return false;
+            }
+        }
+        return true;
     }
     private String obtenerFila(String aux, int IdentiLista)
     {
@@ -354,6 +376,7 @@ public class Bases extends javax.swing.JInternalFrame {
             if(mFilas[IdentiLista][i]!=0)
             {
                 retorno=retorno +"***"+mFilas[IdentiLista][i];
+                return retorno;
             }
         }
         return retorno;
